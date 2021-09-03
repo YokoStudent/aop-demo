@@ -18,8 +18,13 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public void insert(User user) {
-        int i = 1/0;
-        userRepository.save(user);
+    public void insertUser(User user) {
+        System.out.println("方法insertUser执行中...");
+    }
+
+    @Override
+    public User queryUser(Integer id) {
+        System.out.println("方法queryUser执行中...");
+        return new User(1, "query user");
     }
 }

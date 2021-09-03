@@ -1,4 +1,4 @@
-package pers.yoko.aopdemo;
+package pers.yoko.aopdemo.proxy;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +25,6 @@ public class CglibProxyTest {
     public void main() {
         CglibInterceptor cglibInterceptor = new CglibInterceptor(userService);
         userService = CglibInterceptor.proxy(userService.getClass(), cglibInterceptor);
-        userService.insert(new User(1, "yoko"));
+        userService.insertUser(new User(1, "yoko"));
     }
 }

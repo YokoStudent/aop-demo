@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+       default-lazy-init="true">
+    <bean id="userServiceImpl" class="pers.yoko.aopdemo.service.impl.UserServiceImpl"/>
+    <bean id="deptServiceImpl" class="pers.yoko.aopdemo.service.impl.DeptServiceImpl"/>
+
+    <!-- 定义advice -->
+    <bean id="logArgsAdvice" class="pers.yoko.aopdemo.advice.LogArgsAdvice"/>
+    <bean id="logResultAdvice" class="pers.yoko.aopdemo.advice.LogResutlAdvice"/>
+
+    <!-- 定义advisor -->
+    <bean id="logArgsAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="logArgsAdvice"/>
+        <property name="patterns" value="pers.yoko.aopdemo.service.*.query*, pers.yoko.aopdemo.service.*.insert*"/>
+    </bean>
+    <bean id="logResultAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="logResultAdvice"/>
+        <property name="patterns" value="pers.yoko.aopdemo.service.*.query*, pers.yoko.aopdemo.service.*.insert*"/>
+    </bean>
+
+    <!-- 使得所有的advisor生效 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+</beans>

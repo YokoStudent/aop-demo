@@ -1,4 +1,4 @@
-package pers.yoko.aopdemo;
+package pers.yoko.aopdemo.proxy;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +25,6 @@ public class JdkProxyTest {
     public void main() {
         JdkHandler jdkHandler = new JdkHandler(userService);
         userService = JdkHandler.proxy(userService.getClass().getClassLoader(), userService.getClass().getInterfaces(), jdkHandler);
-        userService.insert(new User(1, "yoko"));
+        userService.insertUser(new User(1, "yoko"));
     }
 }

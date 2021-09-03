@@ -8,5 +8,7 @@ import pers.yoko.aopdemo.entity.User;
  * @since 1.0
  */
 public interface UserService {
-    void insert(User user);
+    void insertUser(User user);
+
+    User queryUser(Integer id);
 }

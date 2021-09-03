@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+       default-lazy-init="true">
+    <bean id="userServiceImpl" class="pers.yoko.aopdemo.service.impl.UserServiceImpl"/>
+
+    <!-- 定义advice -->
+    <bean id="logArgsAdvice" class="pers.yoko.aopdemo.advice.LogArgsAdvice"/>
+    <bean id="logResutlAdvice" class="pers.yoko.aopdemo.advice.LogResutlAdvice"/>
+
+    <bean id="userServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- 代理的接口 -->
+        <property name="proxyInterfaces">
+            <list>
+                <value>pers.yoko.aopdemo.service.UserService</value>
+            </list>
+        </property>
+        <!-- 代理的具体实现 -->
+        <property name="target" ref="userServiceImpl"/>
+        <!-- 配置拦截器，这里可以配置advice、advisor、interceptor -->
+        <property name="interceptorNames">
+            <list>
+                <value>logArgsAdvice</value>
+                <value>logResutlAdvice</value>
+            </list>
+        </property>
+    </bean>
+</beans>
