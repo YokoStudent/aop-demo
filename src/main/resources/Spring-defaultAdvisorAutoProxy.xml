@@ -16,11 +16,11 @@
     <!-- 定义advisor -->
     <bean id="logArgsAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
         <property name="advice" ref="logArgsAdvice"/>
-        <property name="patterns" value="pers.yoko.aopdemo.service.*.query*, pers.yoko.aopdemo.service.*.insert*"/>
+        <property name="patterns" value="pers.yoko.aopdemo.service.*.*, pers.yoko.aopdemo.service.*.*"/>
     </bean>
     <bean id="logResultAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
         <property name="advice" ref="logResultAdvice"/>
-        <property name="patterns" value="pers.yoko.aopdemo.service.*.query*, pers.yoko.aopdemo.service.*.insert*"/>
+        <property name="patterns" value="pers.yoko.aopdemo.service.*.*, pers.yoko.aopdemo.service.*.*"/>
     </bean>
 
     <!-- 使得所有的advisor生效 -->
